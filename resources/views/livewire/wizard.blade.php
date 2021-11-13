@@ -189,12 +189,18 @@
     <div class="col-md-12">
       <div class="w-full flex flex-col content-end">
         <div class="flex flex-rows flex-auto flex-wrap pt-10">
-          @foreach($members as $m)
           <img
             class="animate-spin animate-bounce animate-pulse w-1/3"
             src="{{ asset('/img/FX13_elf.png') }}"
           />
-          @endforeach
+          <img
+            class="animate-spin animate-bounce animate-pulse w-1/3"
+            src="{{ asset('/img/FX13_elf.png') }}"
+          />
+          <img
+            class="animate-spin animate-bounce animate-pulse w-1/3"
+            src="{{ asset('/img/FX13_elf.png') }}"
+          />
         </div>
 
         <button

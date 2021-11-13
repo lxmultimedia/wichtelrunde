@@ -168,6 +168,7 @@
               padding: 10px;
             "
           >
+            <p>🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄</p>
             <!-- START CENTERED WHITE CONTAINER -->
             <table
               role="presentation"
@@ -233,7 +234,7 @@
                             margin-bottom: 15px;
                           "
                         >
-                          Dein Wichtel ist: {{ $name }}
+                          Dein Wichtel ist: <b>{{ $name }}</b>
                         </p>
                         <table
                           role="presentation"
@@ -332,7 +333,7 @@
 
               <!-- END MAIN CONTENT AREA -->
             </table>
-
+            <p>🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄</p>
             <!-- START FOOTER -->
             <div
               class="footer"
