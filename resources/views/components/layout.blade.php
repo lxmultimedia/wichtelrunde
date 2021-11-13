@@ -32,6 +32,10 @@
     >
       @include("partials._header");
       {{ $slot }}
+      <p class="text-center text-lg" style="color: #e61f5c">
+        &copy;2021 <a href="https://www.klaroweb.ch">Klaroweb</a>. All rights
+        reserved.
+      </p>
     </div>
     @livewireScripts
   </body>

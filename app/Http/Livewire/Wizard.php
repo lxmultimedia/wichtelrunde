@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\members;
 use Livewire\Component;
 use App\Mail\WichtelMail;
+use App\Models\memberlink;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,22 +14,9 @@ class Wizard extends Component
     public $currentStep = 1;
     public $total_members = 0;
     public $members = array();
-    public $emails = array();
     public $successMsg = '';
-    public $selectedMembers = array();
+    private $takenMembers = array();
 
-
-    protected $rules = [
-        'total_members' => 'min:1|numeric',
-        'members' => 'required|min:6',
-        'emails' => 'required|email',
-    ];
-
-
-
-    /**
-     * Write code on Method
-     */
     public function firstStepSubmit()
     {
         $this->validate([
@@ -38,40 +26,35 @@ class Wizard extends Component
         $this->currentStep = 2;
     }
 
-    /**
-     * Write code on Method
-     */
     public function secondStepSubmit()
     {
         $this->validate([
-            "members"    => "required|array|min:".$this->total_members,
-            "members.*.name"    => "required|string|min:3",
-            "emails"    => "required|array|min:".$this->total_members,
-            "emails.*.email"    => "required|email",
+            "members"               => "required|array|min:".$this->total_members,
+            "members.*.name"        => "required|string|min:3",
+            "members.*.email"       => "required|email",
         ]);
 
         $this->currentStep = 3;
     }
 
-    /**
-     * Write code on Method
-     */
     public function submitForm()
     {
 
         members::truncate();
-
-        $this->selectedMembers = $this->members;
+        memberlink::truncate();
 
         for ($i = 1; $i <= count($this->members); $i++) {
-            members::create([
-                        'name' => $this->members[$i],
-                        'email' => $this->emails[$i]
+            $m = members::create([
+                        'name' => $this->members[$i]["name"],
+                        'email' => $this->members[$i]["email"]
                     ]);
-            $this->wichteln($this->emails[$i]);
+            $ml = memberlink::create([
+                        'name' => $this->members[$i]["name"],
+                        'email' => $this->members[$i]["email"]
+                    ]);
         }
 
-
+        $this->wichteln();
 
         $this->successMsg = 'Jeder Mitarbeiter hat eine E-Mail bekommen mit einer zugeteilten Person!';
 
@@ -81,21 +64,37 @@ class Wizard extends Component
 
     }
 
-    /**
-     * Write code on Method
-     */
+    public function wichteln() {
+
+            $allMembers = members::all();
+
+            foreach($allMembers as $am){
+                $email = $am->email;
+                Mail::to($email)->send(new WichtelMail($this->selectMember($email)));
+            }
+            return 'success';
+    }
+
+    public function selectMember($email){
+
+        $selectedMember = memberlink::inRandomOrder()->where([['taken', '=', false],[ 'email', '!=', $email ]])->first();
+
+        $selectedMember->taken = true;
+        $selectedMember->save();
+
+
+
+        return $selectedMember->name;
+    }
+
     public function back($step)
     {
         $this->currentStep = $step;
     }
 
-    /**
-     * Write code on Method
-     */
     public function clearForm()
     {
         $this->members = array();
-        $this->emails = array();
         $this->total_members = 0;
         $this->selectedMembers = array();
     }
@@ -103,19 +102,5 @@ class Wizard extends Component
     public function render()
     {
         return view('livewire.wizard');
-    }
-
-    public function wichteln($email) {
-            $name = $this->selectMember();
-            Mail::to($email)->send(new WichtelMail($name));
-
-            return 'Email sent Successfully';
-    }
-
-    public function selectMember(){
-
-        shuffle($this->selectedMembers);
-
-        return array_pop($this->selectedMembers);
     }
 }

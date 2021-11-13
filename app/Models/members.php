@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class members extends Model
 {
-    public $guarded = [];
-
     use HasFactory;
+
+    public $guarded = [];
 }
