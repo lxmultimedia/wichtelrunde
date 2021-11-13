@@ -87,7 +87,7 @@ return [
     'mimes' => 'The :attribute must be a file of type: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
-        'numeric' => 'The :attribute must be at least :min.',
+        'numeric' => 'Mindestens :min müssen gewählt sein.',
         'file' => 'The :attribute must be at least :min kilobytes.',
         'string' => 'Dieses Feld muss mindestens :min Zeichen lang sein.',
         'array' => 'Bitte alle Mitarbeiter angeben.',
