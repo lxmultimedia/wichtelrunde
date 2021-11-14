@@ -287,7 +287,7 @@
                                             text-transform: capitalize;
                                             border-color: #3498db;
                                           "
-                                          >Besuche www.klaroweb.ch</a
+                                          >Besuche Klaroweb</a
                                         >
                                       </td>
                                     </tr>
