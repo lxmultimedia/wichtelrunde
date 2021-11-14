@@ -33,7 +33,7 @@
       @include("partials._header");
       {{ $slot }}
       <p class="text-center text-lg" style="color: #e61f5c">
-        &copy;2021 <a class="underline" href="https://www.klaroweb.ch">www.klaroweb.ch</a>. All rights
+        &copy;2021 <a target="_blank" class="font-bold underline" href="https://www.klaroweb.ch">Klaroweb</a>. All rights
         reserved.
       </p>
     </div>
