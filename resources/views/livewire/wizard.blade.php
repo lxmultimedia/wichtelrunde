@@ -115,6 +115,9 @@
   >
     <div class="col-md-12">
       <div class="w-full flex flex-col content-end">
+          @error('members')
+          <span class="error">{{ $message }}</span>
+          @enderror
         @for ($i = 1; $i <= $total_members; $i++)
         <div class="mt-4 mb-8">
           <h4 class="border-b mb-2">Mitarbeiter {{ $i }}</h4>
@@ -136,8 +139,6 @@
             "
             id="member{{ $i }}"
           />
-          @error('members')
-          <span class="error">{{ $message }}</span> @enderror
           @error('members.'.$i.'.name')
           <span class="error">{{ $message }}</span> @enderror
           <label class="mt-3 block" for="title">E-Mail:</label>
@@ -158,8 +159,6 @@
             "
             id="email{{ $i }}"
           />
-          @error('members')
-          <span class="error">{{ $message }}</span> @enderror
           @error('members.'.$i.'.email')
           <span class="error">{{ $message }}</span> @enderror
         </div>

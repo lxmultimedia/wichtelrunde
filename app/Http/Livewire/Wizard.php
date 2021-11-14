@@ -29,7 +29,7 @@ class Wizard extends Component
     public function secondStepSubmit()
     {
         $this->validate([
-            "members"               => "required|array|min:".$this->total_members,
+            "members"               => "array|min:".$this->total_members,
             "members.*.name"        => "required|string|min:3",
             "members.*.email"       => "required|email",
         ]);
