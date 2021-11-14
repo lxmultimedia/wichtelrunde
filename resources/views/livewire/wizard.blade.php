@@ -78,7 +78,7 @@
   >
     <div class="col-md-12">
       <div class="w-full flex flex-col content-end">
-        <label class="mb-3 block" for="title">Anzahl Mitarbeiter:</label>
+        <label class="mb-3 block" for="title">Anzahl Personen:</label>
         <input
           type="text"
           wire:model="total_members"
@@ -120,9 +120,9 @@
           @enderror
         @for ($i = 1; $i <= $total_members; $i++)
         <div class="mt-4 mb-8">
-          <h4 class="border-b mb-2">Mitarbeiter {{ $i }}</h4>
-          <label class="mt-3 block" for="title">Name:</label>
-          <input
+            <h4 class="border-b mb-2">Person {{ $i }}</h4>
+            <label class="mt-3 block" for="title">Name:</label>
+            <input
             type="text"
             wire:model="members.{{ $i }}.name"
             class="
