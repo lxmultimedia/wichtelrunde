@@ -90,7 +90,7 @@ return [
         'numeric' => 'Mindestens :min müssen gewählt sein.',
         'file' => 'The :attribute must be at least :min kilobytes.',
         'string' => 'Dieses Feld muss mindestens :min Zeichen lang sein.',
-        'array' => 'Bitte alle Mitarbeiter angeben.',
+        'array' => 'Bitte alle Personen angeben.',
     ],
     'multiple_of' => 'The :attribute must be a multiple of :value.',
     'not_in' => 'The selected :attribute is invalid.',

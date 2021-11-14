@@ -56,7 +56,7 @@ class Wizard extends Component
 
         $this->wichteln();
 
-        $this->successMsg = 'Jeder Mitarbeiter hat eine E-Mail bekommen mit einer zugeteilten Person!';
+        $this->successMsg = 'Jede Person hat eine E-Mail bekommen mit einer zugeteilten Person!';
 
         $this->clearForm();
 
